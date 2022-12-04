@@ -1,5 +1,8 @@
 //9qxgCqiXrlmX0AzS
 const mongoose = require('mongoose'); // MongoDB work library
+const dotenv = require('dotenv'); // import dotenv - npm package for env variables
+
+dotenv.config();
 
 const { DB_HOST } = process.env;
 // connecting to DB
