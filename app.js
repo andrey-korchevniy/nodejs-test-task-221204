@@ -1,7 +1,7 @@
 //9qxgCqiXrlmX0AzS
 const mongoose = require('mongoose'); // MongoDB work library
 
-const { DB_HOST } = require('./config.');
+const { DB_HOST } = process.env;
 // connecting to DB
 mongoose
   .connect(DB_HOST)
