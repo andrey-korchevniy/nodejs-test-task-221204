@@ -6,7 +6,10 @@ console.log(MONGO_URL);
 
 // connecting to DB
 connect(MONGO_URL)
-  .then(() => listen(3000))
+  .then(() => {
+    listen(3000);
+    console.log('Server is running');
+  })
   .catch(error => {
     console.log(error.message);
     process.exit(1); // close all active processes (1 - close undefined errors)
