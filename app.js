@@ -1,16 +1,18 @@
+const express = require('express');
+const logger = require('morgan'); // logger
+const userRouter = require('./routes/api/users'); // router import
 require('dotenv').config({ path: './.env' }); // import dotenv - npm package for env variables
 
-const mongoose = require('mongoose'); // MongoDB work library
+const app = express();
 
-const { MONGO_URL } = process.env;
+const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short'; // logger settings
 
-console.log(process.env.MONGO_URL);
+app.use(logger(formatsLogger)); // use logger for information input
+// app.use(express.json());
+app.use('/api', userRouter);
+app.use((err, req, res, next) => {
+  const { status = 500, message = 'Server error' } = err; //  handle errors
+  res.status(status).json({ message });
+});
 
-// connecting to DB
-mongoose
-  .connect(MONGO_URL)
-  .then(() => console.log(555))
-  .catch(error => {
-    console.log(error.message);
-    process.exit(1); // closes all active processes (1 - close undefined errors)
-  });
+module.exports = app;
