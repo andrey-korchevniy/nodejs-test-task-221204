@@ -14,13 +14,10 @@ const userSchema = new Schema({
     type: Array,
     default: [],
   },
-});
-
-userSchema.post('save', (error, data, next) => {
-  const { name, code } = error;
-  console.log(name);
-  console.log(code);
-  next();
+  userId: {
+    type: Number,
+    required: true,
+  },
 });
 
 const User = model('user', userSchema); // creating model

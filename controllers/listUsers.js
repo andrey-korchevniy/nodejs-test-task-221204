@@ -1,8 +1,7 @@
-const router = require('../models/users');
 const User = require('../models/user');
 
-const listUsers = (req, res) => {
-  const result = router.listUsers();
+const listUsers = async (_, res) => {
+  const result = await User.find();
   res.json(result);
 };
 

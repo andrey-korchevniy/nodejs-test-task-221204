@@ -1,7 +1,7 @@
-const router = require('../models/users');
+const User = require('../models/user');
 
-const getNotFollowing = (req, res) => {
-  const result = router.getNotFollowing();
+const getNotFollowing = async (_, res) => {
+  const result = await User.find({ subscribe: [] });
   res.json(result);
 };
 
