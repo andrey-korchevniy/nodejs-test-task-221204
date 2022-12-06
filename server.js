@@ -1,14 +1,11 @@
 const { connect } = require('mongoose');
-const { listen } = require('./app');
-const { MONGO_URL } = process.env;
-
-console.log(MONGO_URL);
+const app = require('./app');
+const { MONGO_URL, PORT } = process.env;
 
 // connecting to DB
 connect(MONGO_URL)
   .then(() => {
-    listen(3000);
-    console.log('Server is running');
+    app.listen(PORT);
   })
   .catch(error => {
     console.log(error.message);
